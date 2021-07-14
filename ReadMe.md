@@ -7,4 +7,4 @@ Tugas pemrograman java dengan OJDBC. Tugas ini menggunakan bahasa pemrograman Ja
 
 Deadline : Jumat,14 Juli 2021 09.00 WIB
 
-# Good Luck Guys 🔥🔥🔥
+# 🔥🔥🔥 Semangat Guys 🔥🔥🔥

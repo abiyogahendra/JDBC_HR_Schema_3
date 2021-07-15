@@ -11,6 +11,7 @@ import daos.Job.JobDao;
 import java.sql.Connection;
 import java.util.Scanner;
 import models.Job.Job;
+import tools.Case.JobCase;
 import tools.DB_Connection.DB_Connection;
 
 /**
@@ -19,7 +20,7 @@ import tools.DB_Connection.DB_Connection;
  */
 public class JDBC_HR_Schema {
 
-    private static Scanner input = new Scanner(System.in);
+    private static Scanner _input = new Scanner(System.in);
 
     public static void main(String[] args) {
         int pilihan = 0;
@@ -28,7 +29,7 @@ public class JDBC_HR_Schema {
         do {
             menu();
             System.out.print("Masukkan pilihan: ");
-            pilihan = input.nextInt();
+            pilihan = _input.nextInt();
             switch (pilihan) {
                 case 1:
                     System.out.println("Country belum di implement");
@@ -39,8 +40,9 @@ public class JDBC_HR_Schema {
                 case 3:
                     System.out.println("Employee belum di implement");
                     break;
-                case 4:
-                    System.out.println("Job belum di implement");
+                case 4: //Job
+                    System.out.println("");
+                    JobCase.jobMenu();
                     break;
                 case 5:
                     System.out.println("Location belum di implement");
@@ -49,19 +51,19 @@ public class JDBC_HR_Schema {
                     System.out.println("Region belum di implement");
                     break;
                 case 7:
-                    System.out.println("Terimakasih");
+                    System.out.println("Terimakasih telah menggunakan APLIKASI HR");
                     break;
                 default:
-                    System.out.println("Maaf menu tersebut belum tersedia");
+                    System.out.println("Maaf menu tersebut tidak ada, silahkan pilih menu yang tersedia");
                     pilihan = 0;
             }
-            System.out.println("-------------------------------------------------------");
+            System.out.println("===========================================================================");
             System.out.println("");
         } while (pilihan != 7);
     }
 
     static void menu() {
-        System.out.println("Menu:");
+        System.out.println("Menu Utama:");
         System.out.println("1. Country");
         System.out.println("2. Department");
         System.out.println("3. Employee");
@@ -70,48 +72,4 @@ public class JDBC_HR_Schema {
         System.out.println("6. Region");
         System.out.println("7. Keluar");
     }
-
-    static void testManualJob(JobDao jobDao) {
-        System.out.println("Data Awal");
-        for (Job job : jobDao.getAll()) {
-            System.out.println(job);
-        }
-        System.out.println("");
-
-        System.out.println("----------------------------------------");
-        Job data = new Job("SYG", "Sayoga", 1000, 2000);
-        System.out.println("Insert: " + data);
-        if (jobDao.insert(data)) {
-            System.out.println("Setelah Insert");
-            for (Job job : jobDao.getAll()) {
-                System.out.println(job);
-            }
-        }
-        System.out.println("");
-
-        System.out.println("----------------------------------------");
-        data.setTitle("Putu Gede Sayoga");
-        data.setMinSalary(555);
-        data.setMaxSalary(999);
-        System.out.println("Update: " + data);
-        if (jobDao.update(data)) {
-            System.out.println("Setelah Update");
-            for (Job job : jobDao.getAll()) {
-                System.out.println(job);
-            }
-        }
-        System.out.println("");
-
-        System.out.println("----------------------------------------");
-        System.out.println("Delete dengan id = " + data.getId());
-        if (jobDao.delete(data.getId())) {
-            System.out.println("Setelah Delete");
-            for (Job job : jobDao.getAll()) {
-                System.out.println(job);
-            }
-        }
-        System.out.println("");
-
-    }
-
 }

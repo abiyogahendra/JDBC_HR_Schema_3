@@ -36,9 +36,11 @@ public class EmployeeDAO {
                 + "job_id,"
                 + "salary,"
                 + "manager_id,"
+                + "commission_pct,"
                 + "department_id) "
                 + "values "
                 + "(?,"
+                + "?,"
                 + "?,"
                 + "?,"
                 + "?,"
@@ -59,7 +61,9 @@ public class EmployeeDAO {
             prep.setString(7, emp.getJob());
             prep.setInt(8, emp.getSalary());
             prep.setInt(9, emp.getManager());
-            prep.setInt(10, emp.getDepartment());
+            prep.setDouble(10, emp.getComm());
+            prep.setInt(11, emp.getDepartment());
+            System.out.println(prep.getMetaData());
             prep.executeQuery();
             hasil = true;
         } catch (Exception e) {
@@ -98,7 +102,7 @@ public class EmployeeDAO {
     
     public boolean UpdateEmployee(Employees emp){
         boolean result = false;
-        String query = "update employee set "
+        String query = "update employees set "
                 + "first_name = ?,"
                 + "last_name = ?,"
                 + "email = ?,"
@@ -118,7 +122,7 @@ public class EmployeeDAO {
             prep.setString(5, emp.getHire());
             prep.setString(6, emp.getJob());
             prep.setInt(7, emp.getSalary());
-            prep.setFloat(8, emp.getComm());
+            prep.setDouble(8, emp.getComm());
             prep.setInt(9, emp.getManager());
             prep.setInt(10, emp.getDepartment());
             prep.setInt(11, emp.getEmp());

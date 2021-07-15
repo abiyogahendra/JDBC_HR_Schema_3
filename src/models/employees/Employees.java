@@ -6,6 +6,8 @@
  */
 package models.employees;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author abiyo
@@ -19,7 +21,7 @@ public class Employees {
     private String hire;
     private String job;
     private int salary;
-    private float comm;
+    private double comm;
     private int manager;
     private int department;
 
@@ -55,7 +57,7 @@ public class Employees {
         return salary;
     }
 
-    public float getComm() {
+    public double getComm() {
         return comm;
     }
 
@@ -99,8 +101,8 @@ public class Employees {
         this.salary = salary;
     }
 
-    public void setComm(float comm) {
-        this.comm = comm;
+    public void setComm(double comm) {
+        this.comm = Double.parseDouble(new DecimalFormat("##.####").format(comm));
     }
 
     public void setManager(int manager) {

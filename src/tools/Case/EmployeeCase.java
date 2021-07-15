@@ -15,7 +15,7 @@ import tools.DB_Connection.DB_Connection;
  * @author abiyo
  */
 public class EmployeeCase {
-    public void Employee_case(){
+    public static void Employee_case(){
         DB_Connection conn = new DB_Connection();
         EmployeeDAO emp_conn = new EmployeeDAO(conn.getConnection());
         
@@ -35,7 +35,7 @@ public class EmployeeCase {
         int department  = 0;
         
         System.out.print(
-                  "/n/n---------------------------------\n"
+              "\n\n---------------------------------\n"
                 + "-------------Employee------------\n"
                 + "Aksi :\n "
                 + "1. Insert \n "
@@ -129,8 +129,56 @@ public class EmployeeCase {
                     m_emp.setDepartment(department);
                     if(emp_conn.UpdateEmployee(m_emp)){
                         System.out.println("Berhasil");
+                        System.out.println(String.format(""
+                            + "| %-5s |"
+                            + " %-15s |"
+                            + " %-15s |"
+                            + " %-18s |"
+                            + " %-20s |"
+                            + " %-22s |"
+                            + " %-12s |"
+                            + " %-10s |"
+                            + " %-15s |"
+                            + " %-13s |"
+                            + " %-13s |",
+
+                            "ID", 
+                            "Fisrt name", 
+                            "Last Name", 
+                            "Email", 
+                            "Phone Number", 
+                            "Hire Date", 
+                            "Job ID", 
+                            "Salary", 
+                            "Commission PCT", 
+                            "Manager ID", 
+                            "Department ID"));
+                        System.out.println("");
                         for (Employees employ : emp_conn.GetAllEmployee()) {
-                            System.out.println(employ);
+                        System.out.println(String.format(""
+                            + "| %-5s |"
+                            + " %-15s |"
+                            + " %-15s |"
+                            + " %-18s |"
+                            + " %-20s |"
+                            + " %-22s |"
+                            + " %-12s |"
+                            + " %-10s |"
+                            + " %-15s |"
+                            + " %-13s |"
+                            + " %-13s |",
+
+                            employ.getEmp(), 
+                            employ.getFirst(), 
+                            employ.getLast(), 
+                            employ.getEmail(), 
+                            employ.getPhone(), 
+                            employ.getHire(), 
+                            employ.getJob(), 
+                            employ.getSalary(), 
+                            employ.getComm(), 
+                            employ.getManager(), 
+                            employ.getDepartment()));
                         }
                     }else{
                         System.out.println("Gagal");
@@ -148,8 +196,56 @@ public class EmployeeCase {
                     }
                 break;
                 case 4:
+                    System.out.println(String.format(""
+                            + "| %-5s |"
+                            + " %-15s |"
+                            + " %-15s |"
+                            + " %-18s |"
+                            + " %-20s |"
+                            + " %-22s |"
+                            + " %-12s |"
+                            + " %-10s |"
+                            + " %-15s |"
+                            + " %-13s |"
+                            + " %-13s |",
+                            
+                              "ID", 
+                              "Fisrt name", 
+                              "Last Name", 
+                              "Email", 
+                              "Phone Number", 
+                              "Hire Date", 
+                              "Job ID", 
+                              "Salary", 
+                              "Commission PCT", 
+                              "Manager ID", 
+                              "Department ID"));
+                    System.out.println("");
                     for (Employees employ : emp_conn.GetAllEmployee()) {
-                        System.out.println(employ);
+                        System.out.println(String.format(""
+                            + "| %-5s |"
+                            + " %-15s |"
+                            + " %-15s |"
+                            + " %-18s |"
+                            + " %-20s |"
+                            + " %-22s |"
+                            + " %-12s |"
+                            + " %-10s |"
+                            + " %-15s |"
+                            + " %-13s |"
+                            + " %-13s |",
+                            
+                              employ.getEmp(), 
+                              employ.getFirst(), 
+                              employ.getLast(), 
+                              employ.getEmail(), 
+                              employ.getPhone(), 
+                              employ.getHire(), 
+                              employ.getJob(), 
+                              employ.getSalary(), 
+                              employ.getComm(), 
+                              employ.getManager(), 
+                              employ.getDepartment()));
                     }
                 break;
                 case 5:

@@ -79,6 +79,22 @@ public class CountryDAO {
         return result;
     }
     
+    public boolean isEmpty(String id){
+        String query = "SELECT 1 FROM COUNTRIES WHERE country_id=?";
+        boolean result = false;
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                result = resultSet.getBoolean(1);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return !result;//returns isi / false
+    }
+    
     //delete
     public boolean delete(Country country) {
         boolean result = false;

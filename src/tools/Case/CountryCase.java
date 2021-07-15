@@ -8,13 +8,16 @@ package tools.Case;
 import daos.countries.CountryDAO;
 import java.util.Scanner;
 import models.countries.Country;
+import tools.DB_Connection.DB_Connection;
 
 /**
  *
  * @author icha
  */
 public class CountryCase {
-    public void countryCase(CountryDAO country_conn){
+    public static void countryCase(){
+        DB_Connection connection = new DB_Connection();
+        CountryDAO country_conn = new CountryDAO(connection.getConnection());
         int pilih =0;
         while(pilih !=6){
             Scanner input = new Scanner(System.in);
@@ -65,9 +68,6 @@ public class CountryCase {
                     m_country.setRegion_id(region);
                     if(country_conn.insert(m_country)){
                         System.out.println("Berhasil Insert Country");
-                        for (Country country : country_conn.getAll()) {
-                            System.out.println(country);
-                        }
                     }else{
                         System.out.println("Gagal Insert Country");
                     }
@@ -76,35 +76,46 @@ public class CountryCase {
                     m_country.setId(coun_id);
                     m_country.setName(coun_name);
                     m_country.setRegion_id(region);
-                    if(country_conn.update(m_country)){
-                        System.out.println("Berhasil Update Country");
-                        for (Country country : country_conn.getAll()) {
-                            System.out.println(country);
+                    if(!country_conn.isEmpty(coun_id)){
+                        if(country_conn.update(m_country)){
+                            System.out.println("Berhasil Update Country");
+                        }else{
+                            System.out.println("Gagal Insert Country");
                         }
                     }else{
-                        System.out.println("Gagal Insert Country");
+                        System.out.println("Data dengan code "+coun_id+" tidak ada");
                     }
+                    
                 break;
                 case 3://delete
                     m_country.setId(coun_id);
-                    if(country_conn.delete(m_country)){
-                        System.out.println("Berahasil Hapus Country");
-                        for (Country country : country_conn.getAll()) {
-                            System.out.println(country);
+                    if(!country_conn.isEmpty(coun_id)){
+                        if(country_conn.delete(m_country)){
+                            System.out.println("Berahasil Hapus Country");
+                        }else{
+                            System.out.println("Gagal Delete Country");
                         }
                     }else{
-                        System.out.println("Gagal Delete Country");
+                        System.out.println("Data dengan code "+coun_id+" tidak ada");
                     }
+                    
                 break;
-                case 4:
+                case 4://show all data
+                    System.out.println(String.format("| %-10s | %-25s | %-10s ", 
+                        "Country ID", "Country Name", "Region ID"));
+                    System.out.println("");
                     for (Country country : country_conn.getAll()) {
-                            System.out.println(country);
+                            System.out.println(String.format("| %-10s | %-25s | %-10s ", 
+                                    country.getId(),country.getName(), country.getRegion_id()));
                     }
                 break;
-                case 5:
+                case 5://search
+                    System.out.println(String.format("| %-10s | %-25s | %-10s ", 
+                        "Country ID", "Country Name", "Region ID"));
                     m_country.setId(coun_id);
                     for (Country country : country_conn.search(m_country)) {
-                            System.out.println(country);
+                            System.out.println(String.format("| %-10s | %-25s | %-10s ", 
+                                country.getId(),country.getName(), country.getRegion_id()));
                     }
                 break;
                 case 6:

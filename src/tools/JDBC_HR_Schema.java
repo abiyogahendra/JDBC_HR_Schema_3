@@ -27,23 +27,26 @@ public class JDBC_HR_Schema {
             pilihan = _input.nextInt();
             switch (pilihan) {
                 case 1:
-                    System.out.println("Country belum di implement");
+                    System.out.println("");
+                    CountryCase.countryCase();
                     break;
                 case 2:
-                    System.out.println("Departement belum di implement");
+                    System.out.println("");
+                    DepartmentCase.departmentCase();
                     break;
                 case 3:
-                    System.out.println("Employee belum di implement");
+                    System.out.println("");
+                    EmployeeCase.Employee_case();
                     break;
                 case 4: //Job
                     System.out.println("");
                     JobCase.jobMenu();
                     break;
                 case 5:
-                    System.out.println("Location belum di implement");
+                    LocationCase.Locations_Case();
                     break;
                 case 6:
-                    System.out.println("Region belum di implement");
+                    RegionCase.Regions_Case();
                     break;
                 case 7:
                     System.out.println("Terimakasih telah menggunakan APLIKASI HR");

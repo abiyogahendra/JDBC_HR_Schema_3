@@ -21,6 +21,8 @@ import java.util.Scanner;
 import models.Job.Job;
 import tools.Case.JobCase;
 import tools.Case.EmployeeCase;
+import tools.Case.LocationCase;
+import tools.Case.RegionCase;
 
 import tools.DB_Connection.DB_Connection;
 
@@ -58,10 +60,10 @@ public class JDBC_HR_Schema {
                     JobCase.jobMenu();
                     break;
                 case 5:
-                    System.out.println("Location belum di implement");
+                    LocationCase.Locations_Case();
                     break;
                 case 6:
-                    System.out.println("Region belum di implement");
+                    RegionCase.Regions_Case();
                     break;
                 case 7:
                     System.out.println("Terimakasih telah menggunakan APLIKASI HR");

@@ -5,12 +5,23 @@
  */
 package tools;
 
+
 import daos.countries.CountryDAO;
 import daos.department.DepartmentDAO;
 import models.countries.Country;
 import models.departments.Department;
 import tools.Case.CountryCase;
 import tools.Case.DepartmentCase;
+
+import daos.employees.EmployeeDAO;
+import models.employees.Employees;
+import daos.Job.JobDao;
+import java.sql.Connection;
+import java.util.Scanner;
+import models.Job.Job;
+import tools.Case.JobCase;
+import tools.Case.EmployeeCase;
+
 import tools.DB_Connection.DB_Connection;
 
 /**
@@ -19,21 +30,59 @@ import tools.DB_Connection.DB_Connection;
  */
 public class JDBC_HR_Schema {
 
-    /**
-     * @param args the command line arguments
-     */
+    private static Scanner _input = new Scanner(System.in);
+
     public static void main(String[] args) {
-        DB_Connection connection = new DB_Connection();
-        System.out.println(connection.getConnection());
-        
-        CountryDAO countryDAO = new CountryDAO(connection.getConnection());
-        DepartmentDAO departmentDAO = new DepartmentDAO(connection.getConnection());
-        
-        CountryCase coun_case = new CountryCase();
-        coun_case.countryCase(countryDAO);
-        
-//        DepartmentCase dept_case = new DepartmentCase();
-//        dept_case.departmentCase(departmentDAO);
+        int pilihan = 0;
+        System.out.println("==== APLIKASI HR ====");
+        System.out.println("Selmat datang!! aplikasi ini dapat melihat, menambah, menghapus, memperbarui data pada menu yang disediakan");
+        do {
+            menu();
+            System.out.print("Masukkan pilihan: ");
+            pilihan = _input.nextInt();
+            switch (pilihan) {
+                case 1:
+                    System.out.println("Country belum di implement");
+                    break;
+                case 2:
+                    System.out.println("Departement belum di implement");
+                    break;
+                case 3:
+                    System.out.println("Employee belum di implement");
+                    break;
+                case 4: //Job
+                    System.out.println("");
+                    JobCase.jobMenu();
+                    break;
+                case 5:
+                    System.out.println("Location belum di implement");
+                    break;
+                case 6:
+                    System.out.println("Region belum di implement");
+                    break;
+                case 7:
+                    System.out.println("Terimakasih telah menggunakan APLIKASI HR");
+                    break;
+                default:
+                    System.out.println("Maaf menu tersebut tidak ada, silahkan pilih menu yang tersedia");
+                    pilihan = 0;
+            }
+            System.out.println("===========================================================================");
+            System.out.println("");
+        } while (pilihan != 7);
     }
+
+    static void menu() {
+        System.out.println("Menu Utama:");
+        System.out.println("1. Country");
+        System.out.println("2. Department");
+        System.out.println("3. Employee");
+        System.out.println("4. Job");
+        System.out.println("5. Location");
+        System.out.println("6. Region");
+        System.out.println("7. Keluar");
+    }
+
     
 }
+    

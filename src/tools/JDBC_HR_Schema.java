@@ -5,6 +5,14 @@
  */
 package tools;
 
+
+import daos.countries.CountryDAO;
+import daos.department.DepartmentDAO;
+import models.countries.Country;
+import models.departments.Department;
+import tools.Case.CountryCase;
+import tools.Case.DepartmentCase;
+
 import daos.employees.EmployeeDAO;
 import models.employees.Employees;
 import daos.Job.JobDao;
@@ -13,6 +21,7 @@ import java.util.Scanner;
 import models.Job.Job;
 import tools.Case.JobCase;
 import tools.Case.EmployeeCase;
+
 import tools.DB_Connection.DB_Connection;
 
 /**
@@ -74,15 +83,6 @@ public class JDBC_HR_Schema {
         System.out.println("7. Keluar");
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-
-        // TODO code application logic here
-        EmployeeCase emp_case = new EmployeeCase();
-        emp_case.Employee_case();
-        
-    }
+    
 }
     

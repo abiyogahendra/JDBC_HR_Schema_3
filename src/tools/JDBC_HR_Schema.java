@@ -33,43 +33,5 @@ public class JDBC_HR_Schema {
         RegionCase regCase = new RegionCase();
         regCase.Regions_Case(rdao);
         
-        
-        
-//        
-
-//         //insert data locations
-//        Locations locations = new Locations();
-//        locations.setId(600);
-//        locations.setStreetAddress("dubai rt berapa");
-//        locations.setPostalCode("53354");
-//        locations.setCity("arab");
-//        locations.setStateProvince("arab");
-//        locations.setCountry("jk");
-////        if(lokdao.insert(locations)){
-////            System.out.println("insert berhasil");
-////        }
-//        
-//        //update data
-////        Locations locationsUpdate = new Locations();
-////        locationsUpdate.setId(600);
-////        locationsUpdate.setStreetAddress("Sleman receh banget");
-////        locationsUpdate.setPostalCode("55665");
-////        locationsUpdate.setCity("Sleman aja");
-////        locationsUpdate.setStateProvince("jogja");
-////        locationsUpdate.setCountry("kl");
-////        if(lokdao.update(locationsUpdate)){
-////            System.out.println("Update berhasil");
-////        }
-//        //Delete data locations
-//        Locations locationsDelete = new Locations();
-//        locationsDelete.setId(600);
-//        if(lokdao.delete(locationsDelete)){
-//            System.out.println("Delete berhasil");
-//        }
-//        
-        for(Locations lok : lokdao.getAll()){
-                   System.out.println(lok);
-                   //System.out.println(locations.getId() +" - "+ region.getNama());
-               }
     }
-    }
+}

@@ -33,53 +33,6 @@ public class JDBC_HR_Schema {
         EmployeeCase emp_case = new EmployeeCase();
         emp_case.Employee_case(emp_conn);
         
-//        JobDao jobDao = new JobDao(conn.getConnection());
-//        
-//        testManualJob(jobDao);
     }
 }
     
-//    static void testManualJob(JobDao jobDao){
-//        System.out.println("Data Awal");
-//        for (Job job : jobDao.getAll()) {
-//            System.out.println(job);
-//        }
-//        System.out.println("");
-//
-//        System.out.println("----------------------------------------");
-//        Job data = new Job("SYG", "Sayoga", 1000, 2000);
-//        System.out.println("Insert: " + data);
-//        if (jobDao.insert(data)) {
-//            System.out.println("Setelah Insert");
-//            for (Job job : jobDao.getAll()) {
-//                System.out.println(job);
-//            }
-//        }
-//        System.out.println("");
-//
-//        System.out.println("----------------------------------------");
-//        data.setTitle("Putu Gede Sayoga");
-//        data.setMinSalary(555);
-//        data.setMaxSalary(999);
-//        System.out.println("Update: " + data);
-//        if (jobDao.update(data)) {
-//            System.out.println("Setelah Update");
-//            for (Job job : jobDao.getAll()) {
-//                System.out.println(job);
-//            }
-//        }
-//        System.out.println("");
-//
-//        System.out.println("----------------------------------------");
-//        System.out.println("Delete dengan id = " + data.getId());
-//        if (jobDao.delete(data.getId())) {
-//            System.out.println("Setelah Delete");
-//            for (Job job : jobDao.getAll()) {
-//                System.out.println(job);
-//            }
-//        }
-//        System.out.println("");
-//        
-//    }
-    
-//}

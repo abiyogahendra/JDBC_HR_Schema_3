@@ -50,7 +50,8 @@ public class JDBC_HR_Schema {
                     DepartmentCase.departmentCase();
                     break;
                 case 3:
-                    System.out.println("Employee belum di implement");
+                    System.out.println("");
+                    EmployeeCase.Employee_case();
                     break;
                 case 4: //Job
                     System.out.println("");

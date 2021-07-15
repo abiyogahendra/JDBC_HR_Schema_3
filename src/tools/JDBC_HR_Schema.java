@@ -7,7 +7,12 @@ package tools;
 
 
 import java.util.Scanner;
+import tools.Case.CountryCase;
+import tools.Case.DepartmentCase;
+import tools.Case.EmployeeCase;
 import tools.Case.JobCase;
+import tools.Case.LocationCase;
+import tools.Case.RegionCase;
 
 /**
  *

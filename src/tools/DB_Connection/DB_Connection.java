@@ -23,7 +23,7 @@ public class DB_Connection {
             ods.setPortNumber(1521);
             ods.setUser("system");
             ods.setServiceName("XE");
-            ods.setPassword("MCC54");
+            ods.setPassword("MCC53");
             this.connection = ods.getConnection();
             this.connection.createStatement().execute("alter session set current_schema=HR");
             return connection;

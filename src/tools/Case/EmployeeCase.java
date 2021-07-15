@@ -35,7 +35,7 @@ public class EmployeeCase {
         int department  = 0;
         
         System.out.print(
-                  "/n/n---------------------------------\n"
+              "\n\n---------------------------------\n"
                 + "-------------Employee------------\n"
                 + "Aksi :\n "
                 + "1. Insert \n "

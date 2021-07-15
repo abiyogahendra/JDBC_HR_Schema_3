@@ -5,6 +5,6 @@ Tugas pemrograman java dengan OJDBC. Tugas ini menggunakan bahasa pemrograman Ja
 2. Membuat CRUD 6 table HR (kecuali Job_History)
 3. Membuat interface dan menu dlm bentuk console.
 
-Deadline : Jumat,14 Juli 2021 09.00 WIB
+Deadline : Jumat, 16 Juli 2021 09.00 WIB
 
 # 🔥🔥🔥 Semangat Guys 🔥🔥🔥

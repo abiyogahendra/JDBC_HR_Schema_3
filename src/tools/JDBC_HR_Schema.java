@@ -9,6 +9,7 @@ import daos.employees.EmployeeDAO;
 import models.employees.Employees;
 import daos.Job.JobDao;
 import java.sql.Connection;
+import java.util.Scanner;
 import models.Job.Job;
 import tools.DB_Connection.DB_Connection;
 
@@ -18,53 +19,59 @@ import tools.DB_Connection.DB_Connection;
  */
 public class JDBC_HR_Schema {
 
-    /**
-     * @param args the command line arguments
-     */
+    private static Scanner input = new Scanner(System.in);
+
     public static void main(String[] args) {
-
-        // TODO code application logic here
-        
-        DB_Connection conn = new DB_Connection();
-        
-        EmployeeDAO emp_conn = new EmployeeDAO(conn.getConnection());
-//        
-////        coba select semua data
-//        for (Employees employ : emp.GetAllEmployee()) {
-//            System.out.println(employ);
-//        }
-//            Employees emp = new Employees();
-//            emp.setEmp(301);
-//            emp.setFirst("Abiyoga");
-//            emp.setLast("Hendra Wijaya");
-//            emp.setEmail("abiyogakhusus@gmail.com");
-//            emp.setPhone("082154926473");
-//            emp.setHire("10/12/2005");
-//            emp.setJob("AD_PRES");
-//            emp.setSalary(50000);
-//            emp.setComm(2);
-//            emp.setManager(100);
-//            emp.setDepartment(100);
-//            if(emp_conn.InsertEmployee(emp)){
-//                System.out.println("Berhasil");
-//                for (Employees employ : emp_conn.GetAllEmployee()) {
-//                    System.out.println(employ);
-//                }
-//            }else{
-//                System.out.println("Gagal");
-//            }
-
-            Employees emp = new Employees();
-            emp.setEmp(100);
-            for (Employees data : emp_conn.SearchEmployee(emp)) {
-                System.out.println(data);
+        int pilihan = 0;
+        System.out.println("==== APLIKASI HR ====");
+        System.out.println("Selmat datang!! aplikasi ini dapat melihat, menambah, menghapus, memperbarui data pada menu yang disediakan");
+        do {
+            menu();
+            System.out.print("Masukkan pilihan: ");
+            pilihan = input.nextInt();
+            switch (pilihan) {
+                case 1:
+                    System.out.println("Country belum di implement");
+                    break;
+                case 2:
+                    System.out.println("Departement belum di implement");
+                    break;
+                case 3:
+                    System.out.println("Employee belum di implement");
+                    break;
+                case 4:
+                    System.out.println("Job belum di implement");
+                    break;
+                case 5:
+                    System.out.println("Location belum di implement");
+                    break;
+                case 6:
+                    System.out.println("Region belum di implement");
+                    break;
+                case 7:
+                    System.out.println("Terimakasih");
+                    break;
+                default:
+                    System.out.println("Maaf menu tersebut belum tersedia");
+                    pilihan = 0;
             }
-        JobDao jobDao = new JobDao(conn.getConnection());
-        
-        testManualJob(jobDao);
+            System.out.println("-------------------------------------------------------");
+            System.out.println("");
+        } while (pilihan != 7);
     }
-    
-    static void testManualJob(JobDao jobDao){
+
+    static void menu() {
+        System.out.println("Menu:");
+        System.out.println("1. Country");
+        System.out.println("2. Department");
+        System.out.println("3. Employee");
+        System.out.println("4. Job");
+        System.out.println("5. Location");
+        System.out.println("6. Region");
+        System.out.println("7. Keluar");
+    }
+
+    static void testManualJob(JobDao jobDao) {
         System.out.println("Data Awal");
         for (Job job : jobDao.getAll()) {
             System.out.println(job);
@@ -104,7 +111,7 @@ public class JDBC_HR_Schema {
             }
         }
         System.out.println("");
-        
+
     }
-    
+
 }

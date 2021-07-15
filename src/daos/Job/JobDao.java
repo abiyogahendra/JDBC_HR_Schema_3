@@ -57,7 +57,6 @@ public class JobDao {
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
-            result = false;
         }
         return result;
     }
@@ -72,7 +71,6 @@ public class JobDao {
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
-            result = false;
         }
         return result;
     }
@@ -91,8 +89,42 @@ public class JobDao {
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
-            result = false;
         }
         return result;
+    }
+
+    public boolean isEmpty(String id) {
+        String query = "select 1 from jobs where job_id = ?";
+        boolean result = false;
+        try {
+            PreparedStatement preparedStatement = _connection.prepareStatement(query);
+            preparedStatement.setString(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                result = resultSet.getBoolean(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return !result; //return isi / false
+    }
+    
+    public Job getJobById(String id){
+        String query = "select * from jobs where job_id = ?";
+        Job selectedData = new Job();
+        try {
+            PreparedStatement preparedStatement = _connection.prepareStatement(query);
+            preparedStatement.setString(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                selectedData.setId(resultSet.getString("job_id"));
+                selectedData.setTitle(resultSet.getString("job_title"));
+                selectedData.setMaxSalary(resultSet.getInt("max_salary"));
+                selectedData.setMinSalary(resultSet.getInt("min_salary"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return selectedData;
     }
 }

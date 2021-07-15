@@ -6,23 +6,8 @@
 package tools;
 
 
-import daos.countries.CountryDAO;
-import daos.department.DepartmentDAO;
-import models.countries.Country;
-import models.departments.Department;
-import tools.Case.CountryCase;
-import tools.Case.DepartmentCase;
-
-import daos.employees.EmployeeDAO;
-import models.employees.Employees;
-import daos.Job.JobDao;
-import java.sql.Connection;
 import java.util.Scanner;
-import models.Job.Job;
 import tools.Case.JobCase;
-import tools.Case.EmployeeCase;
-
-import tools.DB_Connection.DB_Connection;
 
 /**
  *

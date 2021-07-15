@@ -8,13 +8,17 @@ package tools.Case;
 import daos.employees.EmployeeDAO;
 import java.util.Scanner;
 import models.employees.Employees;
+import tools.DB_Connection.DB_Connection;
 
 /**
  *
  * @author abiyo
  */
 public class EmployeeCase {
-    public void Employee_case(EmployeeDAO emp_conn){
+    public void Employee_case(){
+        DB_Connection conn = new DB_Connection();
+        EmployeeDAO emp_conn = new EmployeeDAO(conn.getConnection());
+        
         int pilih = 0;
         while(pilih != 6){
         Scanner input = new Scanner(System.in);

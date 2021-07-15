@@ -25,13 +25,8 @@ public class JDBC_HR_Schema {
     public static void main(String[] args) {
 
         // TODO code application logic here
-        
-        DB_Connection conn = new DB_Connection();
-        
-        EmployeeDAO emp_conn = new EmployeeDAO(conn.getConnection());
-
         EmployeeCase emp_case = new EmployeeCase();
-        emp_case.Employee_case(emp_conn);
+        emp_case.Employee_case();
         
     }
 }

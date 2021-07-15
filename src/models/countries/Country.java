@@ -43,6 +43,4 @@ public class Country {
         return "Country{" + "id=" + id + ", name=" + name + ", region_id=" + region_id + '}';
     }
 
-    
-    
 }

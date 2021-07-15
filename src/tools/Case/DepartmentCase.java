@@ -8,13 +8,16 @@ package tools.Case;
 import daos.department.DepartmentDAO;
 import java.util.Scanner;
 import models.departments.Department;
+import tools.DB_Connection.DB_Connection;
 
 /**
  *
  * @author icha
  */
 public class DepartmentCase {
-    public void departmentCase(DepartmentDAO department_conn){
+    public static void departmentCase(){
+        DB_Connection connection = new DB_Connection();
+        DepartmentDAO department_conn = new DepartmentDAO(connection.getConnection());
         int pilih =0;
         while(pilih != 6){
             Scanner input = new Scanner(System.in);
@@ -70,9 +73,6 @@ public class DepartmentCase {
                     m_department.setLocation_id(location);
                     if(department_conn.insert(m_department)){
                         System.out.println("Berhasil Insert Department");
-                        for (Department department : department_conn.getAll()) {
-                            System.out.println(department);
-                        }
                     }else{
                         System.out.println("Gagal Insert Department");
                     }
@@ -82,35 +82,45 @@ public class DepartmentCase {
                     m_department.setName(dept_name);
                     m_department.setManager_id(manager);
                     m_department.setLocation_id(location);
-                    if(department_conn.update(m_department)){
+                    if(!department_conn.isEmpty(dept_id)){
+                        if(department_conn.update(m_department)){
                         System.out.println("Berhasil Update Department");
-                        for (Department department : department_conn.getAll()) {
-                            System.out.println(department);
+                        }else{
+                            System.out.println("Gagal Update Department");
                         }
                     }else{
-                        System.out.println("Gagal Update Department");
-                    }   
+                        System.out.println("Data dengan code "+dept_id+" tidak ada");
+                    }
+                       
                 break;
                 case 3:
                     m_department.setId(dept_id);
-                    if(department_conn.delete(m_department)){
+                    if(!department_conn.isEmpty(dept_id)){
+                        if(department_conn.delete(m_department)){
                         System.out.println("Berahasil Hapus Department");
-                        for (Department department : department_conn.getAll()) {
-                            System.out.println(department);
+                        }else{
+                            System.out.println("Gagal Delete Department");
                         }
                     }else{
-                        System.out.println("Gagal Delete Department");
+                        System.out.println("Data dengan code "+dept_id+" tidak ada");
                     }
+                    
                 break;
                 case 4:
+                    System.out.println(String.format("| %-10s | %-20s | %-10s |%-10s", 
+                        "Dept ID", "Department Name", "Manager ID", "Location ID"));
                     for (Department department : department_conn.getAll()) {
-                            System.out.println(department);
+                            System.out.println(String.format("| %-10s | %-20s | %-10s |%-10s", 
+                                    department.getId(),department.getName(), department.getManager_id(), department.getLocation_id()));
                     }
                 break;
                 case 5:
+                    System.out.println(String.format("| %-10s | %-20s | %-10s |%-10s", 
+                        "Dept ID", "Department Name", "Manager ID", "Location ID"));
                     m_department.setId(dept_id);
                     for (Department department : department_conn.search(m_department)) {
-                            System.out.println(department);
+                            System.out.println(String.format("| %-10s | %-20s | %-10s |%-10s", 
+                                    department.getId(),department.getName(), department.getManager_id(), department.getLocation_id()));
                     }
                 break;
                 case 6:

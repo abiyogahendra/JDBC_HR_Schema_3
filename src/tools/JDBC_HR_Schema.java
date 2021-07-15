@@ -42,10 +42,12 @@ public class JDBC_HR_Schema {
             pilihan = _input.nextInt();
             switch (pilihan) {
                 case 1:
-                    System.out.println("Country belum di implement");
+                    System.out.println("");
+                    CountryCase.countryCase();
                     break;
                 case 2:
-                    System.out.println("Departement belum di implement");
+                    System.out.println("");
+                    DepartmentCase.departmentCase();
                     break;
                 case 3:
                     System.out.println("Employee belum di implement");

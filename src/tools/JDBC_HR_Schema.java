@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.util.Scanner;
 import models.Job.Job;
 import tools.Case.JobCase;
+import tools.Case.EmployeeCase;
 import tools.DB_Connection.DB_Connection;
 
 /**
@@ -72,4 +73,16 @@ public class JDBC_HR_Schema {
         System.out.println("6. Region");
         System.out.println("7. Keluar");
     }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+
+        // TODO code application logic here
+        EmployeeCase emp_case = new EmployeeCase();
+        emp_case.Employee_case();
+        
+    }
 }
+    

@@ -49,7 +49,7 @@ public class DepartmentCase {
                 input.nextLine();
                 dept_id=input.nextInt();
                 
-            }else if(pilih == 1 || pilih == 2){
+            }else if(pilih == 1){
                 System.out.print("Masukan Department ID : ");
                 dept_id = input.nextInt();
                 input.nextLine();
@@ -78,22 +78,45 @@ public class DepartmentCase {
                     }
                 break;
                 case 2://update
+                    Department oldData;
+                    System.out.print("Masukan Department ID : ");
+                    input.nextLine();
+                    dept_id = input.nextInt();
+                    if(!department_conn.isEmpty(dept_id)){
+                        oldData = department_conn.search(dept_id);
+                    }else{
+                        System.out.println("Data dengan code "+dept_id+" tidak ada");
+                        return;
+                    }
+                    System.out.println("Nama Department Lama -  " + oldData.getName());
+                    input.nextLine();
+                    System.out.print("Masukkan Department Baru : ");
+                    dept_name = input.nextLine();
+                    
+                    System.out.println("Manager ID Lama - " + oldData.getManager_id());
+                    System.out.print("Masukkan Manager ID Baru : ");
+                    manager = input.nextInt();
+                    
+                    System.out.println("Location ID Lama - " + oldData.getLocation_id());
+                    System.out.print("Masukkan Location ID Baru : ");
+                    location = input.nextInt();
+                    
                     m_department.setId(dept_id);
                     m_department.setName(dept_name);
                     m_department.setManager_id(manager);
                     m_department.setLocation_id(location);
+                    
                     if(!department_conn.isEmpty(dept_id)){
                         if(department_conn.update(m_department)){
-                        System.out.println("Berhasil Update Department");
-                        }else{
-                            System.out.println("Gagal Update Department");
+                            System.out.println("Berhasil Update Department");
                         }
-                    }else{
-                        System.out.println("Data dengan code "+dept_id+" tidak ada");
+                        else{
+                            System.out.println("Gagal Update Data");
+                        }
                     }
                        
                 break;
-                case 3:
+                case 3://delete
                     m_department.setId(dept_id);
                     if(!department_conn.isEmpty(dept_id)){
                         if(department_conn.delete(m_department)){
@@ -106,7 +129,7 @@ public class DepartmentCase {
                     }
                     
                 break;
-                case 4:
+                case 4://show
                     System.out.println(String.format("| %-10s | %-20s | %-10s |%-10s", 
                         "Dept ID", "Department Name", "Manager ID", "Location ID"));
                     for (Department department : department_conn.getAll()) {
@@ -114,13 +137,16 @@ public class DepartmentCase {
                                     department.getId(),department.getName(), department.getManager_id(), department.getLocation_id()));
                     }
                 break;
-                case 5:
-                    System.out.println(String.format("| %-10s | %-20s | %-10s |%-10s", 
-                        "Dept ID", "Department Name", "Manager ID", "Location ID"));
-                    m_department.setId(dept_id);
-                    for (Department department : department_conn.search(m_department)) {
-                            System.out.println(String.format("| %-10s | %-20s | %-10s |%-10s", 
-                                    department.getId(),department.getName(), department.getManager_id(), department.getLocation_id()));
+                case 5://search
+                    if(!department_conn.isEmpty(dept_id)){
+                        Department department = department_conn.search(dept_id);
+                        System.out.println(String.format("| %-10s | %-20s | %-10s |%-10s", 
+                            "Dept ID", "Department Name", "Manager ID", "Location ID"));
+                        System.out.println(String.format("| %-10s | %-20s | %-10s |%-10s", 
+                                department.getId(),department.getName(), department.getManager_id(), department.getLocation_id()));
+                    
+                    }else{
+                        System.out.println("Data dengan code "+dept_id+" tidak ada");
                     }
                 break;
                 case 6:

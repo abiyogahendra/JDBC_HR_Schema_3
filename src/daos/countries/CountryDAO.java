@@ -112,23 +112,21 @@ public class CountryDAO {
     }
     
     //search
-    public List<Country> search(Country country){
-        List<Country> result = new ArrayList<Country>();
+    public Country search(String id){
         String query = "SELECT * FROM COUNTRIES WHERE country_id=?";
+        Country c = new Country();
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, country.getId());
+            preparedStatement.setString(1, id);
             ResultSet resultSet=preparedStatement.executeQuery();
             while(resultSet.next()){
-                Country c = new Country();
                 c.setId(resultSet.getString(1));
                 c.setName(resultSet.getString(2));
                 c.setRegion_id(resultSet.getInt(3));
-                result.add(c);
             }
         }catch(Exception e){
         
         }
-        return result;
+        return c;
     }
 }

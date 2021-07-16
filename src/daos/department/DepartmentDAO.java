@@ -115,24 +115,22 @@ public class DepartmentDAO {
     }
     
     //search
-    public List<Department> search(Department department){
-        List<Department> result = new ArrayList<Department>();
+    public Department search(int id){
         String query = "SELECT * FROM DEPARTMENTS WHERE department_id=?";
+        Department d = new Department();
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, department.getId());
+            preparedStatement.setInt(1, id);
             ResultSet resultSet=preparedStatement.executeQuery();
             while(resultSet.next()){
-                Department d = new Department();
                 d.setId(resultSet.getInt(1));
                 d.setName(resultSet.getString(2));
                 d.setManager_id(resultSet.getInt(3));
                 d.setLocation_id(resultSet.getInt(4));
-                result.add(d);
             }
         }catch(Exception e){
         
         }
-        return result;
+        return d;
     }
 }

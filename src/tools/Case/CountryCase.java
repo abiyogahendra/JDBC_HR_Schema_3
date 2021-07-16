@@ -48,7 +48,7 @@ public class CountryCase {
                 input.nextLine();
                 coun_id = input.nextLine();
                 
-            }else if(pilih == 1 || pilih == 2){
+            }else if(pilih == 1){
                 System.out.print("Masukan Country ID : ");
                 input.nextLine();
                 coun_id = input.nextLine();
@@ -58,6 +58,7 @@ public class CountryCase {
                 
                 System.out.print("Masukan Region ID : ");
                 region = input.nextInt();
+                
             }
             
             Country m_country = new Country();
@@ -73,17 +74,35 @@ public class CountryCase {
                     }
                 break;
                 case 2://update
+                    Country oldData;
+                    System.out.print("Masukan Country ID : ");
+                    input.nextLine();
+                    coun_id = input.nextLine();
+                    if(!country_conn.isEmpty(coun_id)){
+                        oldData = country_conn.search(coun_id);
+                    }else{
+                        System.out.println("Data dengan code "+coun_id+" tidak ada");
+                        return;
+                    }
+                    System.out.println("Nama Country Lama :  " + oldData.getName());
+                    System.out.print("Masukkan Country Baru : ");
+                    coun_name = input.nextLine();
+                    
+                    System.out.println("Region ID Lama - " + oldData.getRegion_id());
+                    System.out.print("Masukkan Region ID : ");
+                    region = input.nextInt();
+                    
                     m_country.setId(coun_id);
                     m_country.setName(coun_name);
                     m_country.setRegion_id(region);
+                    
                     if(!country_conn.isEmpty(coun_id)){
                         if(country_conn.update(m_country)){
                             System.out.println("Berhasil Update Country");
-                        }else{
-                            System.out.println("Gagal Insert Country");
                         }
-                    }else{
-                        System.out.println("Data dengan code "+coun_id+" tidak ada");
+                        else{
+                            System.out.println("Gagal Update Data");
+                        }
                     }
                     
                 break;
@@ -110,12 +129,15 @@ public class CountryCase {
                     }
                 break;
                 case 5://search
+                    if(!country_conn.isEmpty(coun_id)){
+                        Country country = country_conn.search(coun_id);
+                        
                     System.out.println(String.format("| %-10s | %-25s | %-10s ", 
                         "Country ID", "Country Name", "Region ID"));
-                    m_country.setId(coun_id);
-                    for (Country country : country_conn.search(m_country)) {
-                            System.out.println(String.format("| %-10s | %-25s | %-10s ", 
+                    System.out.println(String.format("| %-10s | %-25s | %-10s ", 
                                 country.getId(),country.getName(), country.getRegion_id()));
+                    }else{
+                        System.out.println("Data dengan code "+coun_id+" tidak ada");
                     }
                 break;
                 case 6:

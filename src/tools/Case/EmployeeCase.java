@@ -51,7 +51,7 @@ public class EmployeeCase {
         System.out.print("Pilih: ");
         
         pilih = input.nextInt();
-        
+        Employees m_emp = new Employees();
             if (pilih == 3 || pilih==5) {
                 System.out.print("Masukkan Employee ID : ");
                 emp_id = input.nextInt();
@@ -59,17 +59,22 @@ public class EmployeeCase {
                 System.out.print("Masukkan Employee ID : ");
                 emp_id = input.nextInt();
                 input.nextLine();
-
+                
                 System.out.print("Masukkan Employee First Name : ");
                 first = input.nextLine();
-
 
                 System.out.print("Masukkan Employee Last Name : ");
                 last = input.nextLine();
 
                 System.out.print("Masukkan Employee Email Name : ");
                 email = input.nextLine();
+                 while(!emp_conn.emailCheck(email)){
+                    System.out.println("");
+                    System.out.print("Masukkan Employee Ulang Email Name : ");
+                    email = input.nextLine();
+                }
 
+                
                 System.out.print("Masukkan Employee Phone Number : ");
                 phone = input.nextLine();
 
@@ -92,7 +97,7 @@ public class EmployeeCase {
                 department = input.nextInt();
 
             }
-            Employees m_emp = new Employees();
+            
             switch(pilih){
                 case 1: //insert
                     m_emp.setEmp(emp_id);
@@ -187,6 +192,12 @@ public class EmployeeCase {
                     System.out.println("Employee Email lama - " + oldData.getEmail());
                     System.out.print("Masukkan Employee Email Name : ");
                     email = input.nextLine();
+                    while(!emp_conn.emailCheck(email)){
+                        System.out.println("");
+                        System.out.println("Employee Email lama - " + oldData.getEmail());
+                        System.out.print("Masukkan Employee Email Name Yang Berbeda: ");
+                        email = input.nextLine();
+                    }
 
                     System.out.println("Employee Phone lama - " + oldData.getPhone());
                     System.out.print("Masukkan Employee Phone Number : ");

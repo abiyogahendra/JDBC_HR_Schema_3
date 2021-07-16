@@ -110,18 +110,23 @@ public class LocationCase {
                     
                 break;
                 case 4:
+                   System.out.println(String.format("| %10s | %40s | %30s| %30s| %30s| %30s|","Location ID","treet Address","Postal Code","City","State Province","Country ID" ));
+                    System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
                    for(Locations lok : locations.getAll()){
-                   System.out.println(lok);
-                   //System.out.println(locations.getId() +" - "+ region.getNama());
-               }
+                   System.out.println(String.format("| %10s | %40s | %30s| %30s| %30s| %30s|",lok.getId(),lok.getStreetAddress(),lok.getPostalCode(),lok.getCity(),lok.getStateProvince(),lok.getCountry() ));
+                }
                 break;
                 case 5:
-                    if (!locations.isEmpty(id)) {
-                        for (Locations lok : locations.SearchLocations(id)) {
-                            System.out.println(lok);
-                        }
+                    if(!locations.isEmpty(id)){
+                        Locations location = locations.SearchLocations(id);
+                           System.out.println("Location ID     : "+ location.getId());
+                           System.out.println("Street Address  : "+ location.getStreetAddress());
+                           System.out.println("Postal Code     : "+ location.getPostalCode());
+                           System.out.println("City            : "+ location.getCity());
+                           System.out.println("State Province  : "+ location.getStateProvince());
+                           System.out.println("Country ID      : "+ location.getCountry());
                     }else{
-                        System.out.println("Data dengan code \'" + id + "\' tidak ada"); 
+                        System.out.println("Data dengan code "+id+" tidak ada");
                     }
                 break;
                 case 6:

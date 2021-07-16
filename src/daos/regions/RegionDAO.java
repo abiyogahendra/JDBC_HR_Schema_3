@@ -87,23 +87,23 @@ public class RegionDAO {
         }
         return result;
     }
-    public List<Regions> Search(int Id) {
-        List<Regions> regions = new ArrayList<Regions>();
+    public Regions Search(int Id) {
+        Regions r = new Regions();
         String query = "SELECT * FROM REGIONS where region_id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, Id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Regions r = new Regions();
+                
                 r.setId(resultSet.getInt(1));
                 r.setNama(resultSet.getString(2));
-                regions.add(r);
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return regions;
+        return r;
     }
     public boolean isEmpty(int id) {
         String query = "select 1 from regions where region_id = ?";

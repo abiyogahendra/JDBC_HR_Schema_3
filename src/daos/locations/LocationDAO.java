@@ -98,27 +98,25 @@ public class LocationDAO {
         }
         return result;
     }
-    public List<Locations> SearchLocations(int Id) {
-        List<Locations> locations = new ArrayList<Locations>();
+    public Locations SearchLocations(int Id) {
+        Locations lok = new Locations();
         String query = "SELECT * FROM locations where location_id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, Id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Locations lok = new Locations();
                 lok.setId(resultSet.getInt("location_id"));
                 lok.setStreetAddress(resultSet.getString("street_address"));
                 lok.setPostalCode(resultSet.getString("postal_code"));
                 lok.setCity(resultSet.getString("city"));
                 lok.setStateProvince(resultSet.getString("state_province"));
                 lok.setCountry(resultSet.getString("country_id"));
-                locations.add(lok);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return locations;
+        return lok;
     }
     public boolean isEmpty(int id) {
         String query = "select 1 from locations where location_id = ?";

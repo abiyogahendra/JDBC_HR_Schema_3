@@ -192,29 +192,19 @@ public class EmployeeDAO {
         return !result; //return isi / false
     }
     
-    public Employees GetEmployee(int id){
-         String query = "select * from employees where employee_id = ?";
-         Employees data = new Employees();
-         try {
-             PreparedStatement preparedStatement = connection.prepareStatement(query);
-             preparedStatement.setInt(1, id);
-             ResultSet resultSet = preparedStatement.executeQuery();
-             while (resultSet.next()) {
-                 data.setEmp(resultSet.getInt(1));
-                 data.setFirst(resultSet.getString(2));
-                 data.setLast(resultSet.getString(3));
-                 data.setEmail(resultSet.getString(4));
-                 data.setPhone(resultSet.getString(5));
-                 data.setHire(resultSet.getString(6));
-                 data.setJob(resultSet.getString(7));
-                 data.setSalary(resultSet.getInt(8));
-                 data.setComm(resultSet.getFloat(9));
-                 data.setManager(resultSet.getInt(10));
-                 data.setDepartment(resultSet.getInt(11));
-             }
-         } catch (Exception e) {
-             e.printStackTrace();
-         }
-         return data;
-     } 
+    public boolean emailCheck(String email){
+        String query = "select 1 from employees where email = ?";
+        boolean result = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1,email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                result = resultSet.getBoolean(1);
+            }
+        } catch (Exception e) {
+//            e.printStackTrace();
+        }
+        return !result; //return isi / false
+    }
 }

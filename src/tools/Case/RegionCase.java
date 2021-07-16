@@ -84,19 +84,19 @@ public class RegionCase {
                 }   
                 break;
                 case 4:
+                   System.out.println(String.format("| %10s | %30s |","Region ID","Region Name" ));
+                    System.out.println("----------------------------");
                    for(Regions reg : region.getAll()){
-                    System.out.println(reg);
-                    //System.out.println(region.getId() +" - "+ region.getNama());
+                   System.out.println(String.format("| %10d | %30s |",reg.getId(),reg.getNama() ));
                 }
                 break;
                 case 5:
-                    regionModels.setId(id);
-                    if (!region.isEmpty(id)) {
-                        for (Regions reg : region.Search(id)) {
-                            System.out.println(reg);
-                        }
+                       if(!region.isEmpty(id)){
+                        Regions regions = region.Search(id);
+                           System.out.println("Region ID    : "+ regions.getId());
+                           System.out.println("Region Name  : "+ regions.getNama());
                     }else{
-                        System.out.println("Data dengan code \'" + id + "\' tidak ada");
+                        System.out.println("Data dengan code "+id+" tidak ada");
                     }
                 break;
                 case 6:

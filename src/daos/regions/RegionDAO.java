@@ -105,4 +105,19 @@ public class RegionDAO {
         }
         return regions;
     }
+    public boolean isEmpty(int id) {
+        String query = "select 1 from regions where region_id = ?";
+        boolean result = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                result = resultSet.getBoolean(1);
+            }
+        } catch (Exception e) {
+//            e.printStackTrace();
+        }
+        return !result; //return isi / false
+    }
 }

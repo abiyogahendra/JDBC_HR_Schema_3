@@ -90,14 +90,22 @@ public class LocationCase {
                     locationModels.setCity(city);
                     locationModels.setStateProvince(province);
                     locationModels.setCountry(country);
-                    if(locations.update(locationModels)){
-                        System.out.println("Update berhasil");
+                    if (!locations.isEmpty(id)) {
+                        if(locations.update(locationModels)){
+                            System.out.println("Update berhasil");
+                        }
+                    }else{
+                        System.out.println("Data dengan code \'" + id + "\' tidak ada");   
                     }
                 break;
                 case 3://Delete data locations
                     locationModels.setId(id);
-                    if(locations.delete(locationModels)){
-                        System.out.println("Delete berhasil");
+                    if (!locations.isEmpty(id)) {
+                        if(locations.delete(locationModels)){
+                            System.out.println("Delete berhasil");
+                        }
+                    }else{
+                        System.out.println("Data dengan code \'" + id + "\' tidak ada");   
                     }
                     
                 break;
@@ -108,8 +116,12 @@ public class LocationCase {
                }
                 break;
                 case 5:
-                    for (Locations lok : locations.SearchLocations(id)) {
-                        System.out.println(lok);
+                    if (!locations.isEmpty(id)) {
+                        for (Locations lok : locations.SearchLocations(id)) {
+                            System.out.println(lok);
+                        }
+                    }else{
+                        System.out.println("Data dengan code \'" + id + "\' tidak ada"); 
                     }
                 break;
                 case 6:

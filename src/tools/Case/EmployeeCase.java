@@ -127,72 +127,80 @@ public class EmployeeCase {
                     m_emp.setComm(comm);
                     m_emp.setManager(manager);
                     m_emp.setDepartment(department);
-                    if(emp_conn.UpdateEmployee(m_emp)){
-                        System.out.println("Berhasil");
-                        System.out.println(String.format(""
-                            + "| %-5s |"
-                            + " %-15s |"
-                            + " %-15s |"
-                            + " %-18s |"
-                            + " %-20s |"
-                            + " %-22s |"
-                            + " %-12s |"
-                            + " %-10s |"
-                            + " %-15s |"
-                            + " %-13s |"
-                            + " %-13s |",
+                    if (!emp_conn.isEmpty(m_emp)) {
+                        if(emp_conn.UpdateEmployee(m_emp)){
+                            System.out.println("Berhasil");
+                            System.out.println(String.format(""
+                                + "| %-5s |"
+                                + " %-15s |"
+                                + " %-15s |"
+                                + " %-18s |"
+                                + " %-20s |"
+                                + " %-22s |"
+                                + " %-12s |"
+                                + " %-10s |"
+                                + " %-15s |"
+                                + " %-13s |"
+                                + " %-13s |",
 
-                            "ID", 
-                            "Fisrt name", 
-                            "Last Name", 
-                            "Email", 
-                            "Phone Number", 
-                            "Hire Date", 
-                            "Job ID", 
-                            "Salary", 
-                            "Commission PCT", 
-                            "Manager ID", 
-                            "Department ID"));
-                        System.out.println("");
-                        for (Employees employ : emp_conn.GetAllEmployee()) {
-                        System.out.println(String.format(""
-                            + "| %-5s |"
-                            + " %-15s |"
-                            + " %-15s |"
-                            + " %-18s |"
-                            + " %-20s |"
-                            + " %-22s |"
-                            + " %-12s |"
-                            + " %-10s |"
-                            + " %-15s |"
-                            + " %-13s |"
-                            + " %-13s |",
+                                "ID", 
+                                "Fisrt name", 
+                                "Last Name", 
+                                "Email", 
+                                "Phone Number", 
+                                "Hire Date", 
+                                "Job ID", 
+                                "Salary", 
+                                "Commission PCT", 
+                                "Manager ID", 
+                                "Department ID"));
+                            System.out.println("");
+                            for (Employees employ : emp_conn.GetAllEmployee()) {
+                            System.out.println(String.format(""
+                                + "| %-5s |"
+                                + " %-15s |"
+                                + " %-15s |"
+                                + " %-18s |"
+                                + " %-20s |"
+                                + " %-22s |"
+                                + " %-12s |"
+                                + " %-10s |"
+                                + " %-15s |"
+                                + " %-13s |"
+                                + " %-13s |",
 
-                            employ.getEmp(), 
-                            employ.getFirst(), 
-                            employ.getLast(), 
-                            employ.getEmail(), 
-                            employ.getPhone(), 
-                            employ.getHire(), 
-                            employ.getJob(), 
-                            employ.getSalary(), 
-                            employ.getComm(), 
-                            employ.getManager(), 
-                            employ.getDepartment()));
+                                employ.getEmp(), 
+                                employ.getFirst(), 
+                                employ.getLast(), 
+                                employ.getEmail(), 
+                                employ.getPhone(), 
+                                employ.getHire(), 
+                                employ.getJob(), 
+                                employ.getSalary(), 
+                                employ.getComm(), 
+                                employ.getManager(), 
+                                employ.getDepartment()));
+                            }
+                        }else{
+                            System.out.println("Gagal");
                         }
                     }else{
-                        System.out.println("Gagal");
+                        System.out.println("Data dengan code \'" + emp_id + "\' tidak ada");
                     }
                 break;
                 case 3:
                     m_emp.setEmp(emp_id);
-                    if(emp_conn.DeletedEmployee(m_emp)){
-                        System.out.println("Berhasil "+ m_emp.getEmp() +" Dihapus");
-    //                    for (Employees employ : emp_conn.GetAllEmployee()) {
-    //                        System.out.println(employ);
-    //                    }
+                    if (!emp_conn.isEmpty(m_emp)) {
+                        if(emp_conn.DeletedEmployee(m_emp)){
+                            System.out.println("Berhasil "+ m_emp.getEmp() +" Dihapus");
+        //                    for (Employees employ : emp_conn.GetAllEmployee()) {
+        //                        System.out.println(employ);
+        //                    }
+                        }else{
+                            System.out.println("Gagal");
+                        }
                     }else{
-                        System.out.println("Gagal");
+                        System.out.println("Data dengan code \'" + emp_id + "\' tidak ada");         
                     }
                 break;
                 case 4:
@@ -250,8 +258,12 @@ public class EmployeeCase {
                 break;
                 case 5:
                     m_emp.setEmp(emp_id);
-                    for (Employees data : emp_conn.SearchEmployee(m_emp)) {
-                        System.out.println(data);
+                    if (!emp_conn.isEmpty(m_emp)) {
+                        for (Employees data : emp_conn.SearchEmployee(m_emp)) {
+                            System.out.println(data);
+                        }
+                    }else{
+                        System.out.println("Data dengan code \'" + emp_id + "\' tidak ada");
                     }
                 break;
                 case 6:

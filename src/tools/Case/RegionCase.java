@@ -65,16 +65,23 @@ public class RegionCase {
                 case 2://update data region
                     regionModels.setId(id);
                     regionModels.setNama(name);
-                    if(region.update(regionModels)){
-                        System.out.println("Update berhasil");
+                    if (!region.isEmpty(id)) {
+                        if(region.update(regionModels)){
+                            System.out.println("Update berhasil");
+                        }
+                    }else{
+                        System.out.println("Data dengan code \'" + id + "\' tidak ada");
                     }
                 break;
                 case 3://Delete data
                 regionModels.setId(id);
-                if(region.delete(regionModels)){
-                    System.out.println("Delete berhasil");
-                }
-                    
+                if (!region.isEmpty(id)) {
+                    if(region.delete(regionModels)){
+                        System.out.println("Delete berhasil");
+                    }
+                }else{
+                    System.out.println("Data dengan code \'" + id + "\' tidak ada");
+                }   
                 break;
                 case 4:
                    for(Regions reg : region.getAll()){
@@ -84,8 +91,12 @@ public class RegionCase {
                 break;
                 case 5:
                     regionModels.setId(id);
-                    for (Regions reg : region.Search(id)) {
-                        System.out.println(reg);
+                    if (!region.isEmpty(id)) {
+                        for (Regions reg : region.Search(id)) {
+                            System.out.println(reg);
+                        }
+                    }else{
+                        System.out.println("Data dengan code \'" + id + "\' tidak ada");
                     }
                 break;
                 case 6:

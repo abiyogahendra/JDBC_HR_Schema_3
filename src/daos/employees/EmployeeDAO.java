@@ -150,15 +150,14 @@ public class EmployeeDAO {
         return result;
     }
     
-    public List<Employees> SearchEmployee(Employees empl){
-        List<Employees> result_emp = new ArrayList<Employees>();
+    public Employees SearchEmployee(int empl){
+        Employees e = new Employees();
         String query = "select * from employees where employee_id = ?";
         try {
             PreparedStatement prep = connection.prepareStatement(query);
-            prep.setInt(1, empl.getEmp());
+            prep.setInt(1, empl);
             ResultSet resultSet = prep.executeQuery();
             while (resultSet.next()) {
-                Employees e = new Employees();
                 e.setEmp(resultSet.getInt(1));
                 e.setFirst(resultSet.getString(2));
                 e.setLast(resultSet.getString(3));
@@ -170,20 +169,19 @@ public class EmployeeDAO {
                 e.setComm(resultSet.getFloat(9));
                 e.setManager(resultSet.getInt(10));
                 e.setDepartment(resultSet.getInt(11));
-                result_emp.add(e);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception z) {
+            z.printStackTrace();
         }
-        return result_emp;
+        return e;
     }
     
-    public boolean isEmpty(Employees empl) {
+    public boolean isEmpty(int empl) {
         String query = "select 1 from employees where employee_id = ?";
         boolean result = false;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1,empl.getEmp());
+            preparedStatement.setInt(1,empl);
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
                 result = resultSet.getBoolean(1);
@@ -193,4 +191,30 @@ public class EmployeeDAO {
         }
         return !result; //return isi / false
     }
+    
+    public Employees GetEmployee(int id){
+         String query = "select * from employees where employee_id = ?";
+         Employees data = new Employees();
+         try {
+             PreparedStatement preparedStatement = connection.prepareStatement(query);
+             preparedStatement.setInt(1, id);
+             ResultSet resultSet = preparedStatement.executeQuery();
+             while (resultSet.next()) {
+                 data.setEmp(resultSet.getInt(1));
+                 data.setFirst(resultSet.getString(2));
+                 data.setLast(resultSet.getString(3));
+                 data.setEmail(resultSet.getString(4));
+                 data.setPhone(resultSet.getString(5));
+                 data.setHire(resultSet.getString(6));
+                 data.setJob(resultSet.getString(7));
+                 data.setSalary(resultSet.getInt(8));
+                 data.setComm(resultSet.getFloat(9));
+                 data.setManager(resultSet.getInt(10));
+                 data.setDepartment(resultSet.getInt(11));
+             }
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+         return data;
+     } 
 }

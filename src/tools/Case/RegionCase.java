@@ -45,7 +45,7 @@ public class RegionCase {
             if (pilih == 3 || pilih==5) {
                 System.out.print("Masukkan Region ID : ");
                 id = input.nextInt();
-            } else if(pilih == 1 || pilih == 2) {
+            } else if(pilih == 1) {
                 System.out.print("Masukkan Region ID : ");
                 id = input.nextInt();
                 input.nextLine();
@@ -63,14 +63,29 @@ public class RegionCase {
                       }
                 break;
                 case 2://update data region
+                    Regions oldData;
+                    System.out.println("Masukan Region ID   :");
+                    id = input.nextInt();
+                    if(!region.isEmpty(id)){
+                        oldData = region.Search(id);
+                    }else{
+                        System.out.println("data dengan code"+ id + "tidak ada");
+                        return;
+                    }
+                    System.out.println("Region lama - "+ oldData.getNama());
+                    input.nextLine();
+                    System.out.println("Masukan region baru : ");
+                    name = input.nextLine();
+                    
                     regionModels.setId(id);
                     regionModels.setNama(name);
-                    if (!region.isEmpty(id)) {
+                    
+                    if(!region.isEmpty(id)){
                         if(region.update(regionModels)){
-                            System.out.println("Update berhasil");
+                            System.out.println("Update region berhasil");
+                        }else{
+                            System.out.println("Update region gagal");
                         }
-                    }else{
-                        System.out.println("Data dengan code \'" + id + "\' tidak ada");
                     }
                 break;
                 case 3://Delete data

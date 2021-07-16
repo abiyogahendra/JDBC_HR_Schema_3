@@ -49,7 +49,7 @@ public class LocationCase {
             if (pilih == 3 || pilih==5) {
                 System.out.print("Masukkan Location ID : ");
                 id = input.nextInt();
-            } else if(pilih == 1 || pilih == 2) {
+            } else if(pilih == 1) {
                 System.out.print("Masukkan Location ID : ");
                 id = input.nextInt();
                 input.nextLine();
@@ -84,18 +84,49 @@ public class LocationCase {
                     }
                 break;
                 case 2://update data location
+                    Locations oldData;
+                    System.out.println("Masukan Location ID   :");
+                    id = input.nextInt();
+                    if(!locations.isEmpty(id)){
+                        oldData = locations.SearchLocations(id);
+                    }else{
+                        System.out.println("data dengan ID "+ id + " tidak ada");
+                        return;
+                    }
+                    System.out.println("Address lama - "+ oldData.getStreetAddress());
+                    input.nextLine();
+                    System.out.println("Masukan Address Baru : ");
+                    address = input.nextLine();
+                    
+                    System.out.println("Postal Code Lama - " + oldData.getPostalCode());
+                    System.out.print("Masukkan Postal Code Baru : ");
+                    code = input.nextLine();
+                    
+                    System.out.println("City Lama - " + oldData.getCity());
+                    System.out.print("Masukkan City Baru : ");
+                    city = input.nextLine();
+                    
+                    System.out.println("Province Lama - " + oldData.getStateProvince());
+                    System.out.print("Masukkan Province Baru : ");
+                    province = input.nextLine();
+                    
+                    System.out.println("Country ID Lama - " + oldData.getCountry());
+                    System.out.print("Masukkan Country ID Baru : ");
+                    country = input.nextLine();
+                    
                     locationModels.setId(id);
                     locationModels.setStreetAddress(address);
                     locationModels.setPostalCode(code);
                     locationModels.setCity(city);
                     locationModels.setStateProvince(province);
                     locationModels.setCountry(country);
-                    if (!locations.isEmpty(id)) {
+                    
+                    if(!locations.isEmpty(id)){
                         if(locations.update(locationModels)){
-                            System.out.println("Update berhasil");
+                            System.out.println("Update locations berhasil");
+                        }else{
+                            System.out.println("Update locations gagal");
                         }
-                    }else{
-                        System.out.println("Data dengan code \'" + id + "\' tidak ada");   
                     }
                 break;
                 case 3://Delete data locations
